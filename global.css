@@ -12,7 +12,6 @@
     --color-muted-foreground: rgba(0, 0, 0, 0.6);
     --color-primary: #081126;
     --color-accent: #ea7a53;
-    --color-button: #d4653f;
     --color-border: rgba(0, 0, 0, 0.1);
     --color-success: #16a34a;
     --color-destructive: #dc2626;
@@ -38,12 +37,12 @@
     --spacing-24: 96px;
     --spacing-30: 120px;
 
-    --font-sans: sans-regular;
-    --font-sans-light: sans-light;
-    --font-sans-medium: sans-medium;
-    --font-sans-semibold: sans-semibold;
-    --font-sans-bold: sans-bold;
-    --font-sans-extrabold: sans-extrabold;
+    --font-sans: sans_regular;
+    --font-sans-light: sans_light;
+    --font-sans-medium: sans_medium;
+    --font-sans-semibold: sans_semi_bold;
+    --font-sans-bold: sans_bold;
+    --font-sans-extrabold: sans_extra_bold;
 }
 
 @layer components {
