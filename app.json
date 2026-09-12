@@ -1,13 +1,12 @@
 {
   "expo": {
-    "name": "RECURA_APP",
-    "slug": "RECURA_APP",
+    "name": "RECURA APP",
+    "slug": "recura-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "recuraapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
@@ -18,7 +17,6 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -39,14 +37,22 @@
           }
         }
       ],
-      ["expo-font", { "fonts": [
-        "./assets/fonts/PlusJakartaSans-Regular.ttf",
-        "./assets/fonts/PlusJakartaSans-Bold.ttf",
-        "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
-        "./assets/fonts/PlusJakartaSans-Medium.ttf",
-        "./assets/fonts/PlusJakartaSans-ExtraBold.ttf",
-        "./assets/fonts/PlusJakartaSans-Light.ttf"
-      ]}] 
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/PlusJakartaSans-Regular.ttf",
+            "./assets/fonts/PlusJakartaSans-Bold.ttf",
+            "./assets/fonts/PlusJakartaSans-SemiBold.ttf",
+            "./assets/fonts/PlusJakartaSans-Medium.ttf",
+            "./assets/fonts/PlusJakartaSans-ExtraBold.ttf",
+            "./assets/fonts/PlusJakartaSans-Light.ttf"
+          ]
+        }
+      ],
+      "expo-image",
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
