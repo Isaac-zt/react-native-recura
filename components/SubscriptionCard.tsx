@@ -31,7 +31,7 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
                         <View className="sub-row-copy">
                             <Text className="sub-label">Payment:</Text>
                             <Text className="sub-value" numberOfLines={1} ellipsizemode="tail">
-                               {paymentMethod?.trim()}
+                               {paymentMethod?.trim() || 'Not Provided'}
                             </Text>
                         </View>
                     </View>
@@ -40,7 +40,7 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
                         <View className="sub-row-copy">
                             <Text className="sub-label">Category:</Text>
                             <Text className="sub-value" numberOfLines={1} ellipsizemode="tail">
-                               {category?.trim() || plan?.trim()}
+                               {category?.trim() || plan?.trim() || 'Not Provided'}
                             </Text>
                         </View>
                     </View>
@@ -70,7 +70,6 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
                                {status ? formatStatusLabel(status) : ""}</Text>
                         </View>
                     </View>
-
 
                 </View>
             </View>
