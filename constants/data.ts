@@ -1,4 +1,4 @@
-import { icons } from "./icon";
+import { icons } from "@/constants/icon";
 
 export const tabs: AppTab[] = [
     { name: "index", title: "Home", icon: icons.home },
