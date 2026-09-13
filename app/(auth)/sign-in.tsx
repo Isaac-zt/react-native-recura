@@ -2,16 +2,15 @@ import { View, Text, TextInput, Pressable, ScrollView, KeyboardAvoidingView, Pla
 import { Link, useRouter, type Href } from 'expo-router';
 import { useSignIn } from '@clerk/expo';
 import { useState } from 'react';
-import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView as RNSafeAreaView } from'react-native-safe-area-context';
 import { styled } from 'nativewind';
-// import { usePostHog } from 'posthog-react-native';
+import { posthog } from '@/lib/posthog';
 
 const SafeAreaView = styled(RNSafeAreaView);
 
 const SignIn = () => {
     const { signIn, errors, fetchStatus } = useSignIn();
     const router = useRouter();
-    // const posthog = usePostHog();
 
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
@@ -24,6 +23,7 @@ const SignIn = () => {
     // Client-side validation
     const emailValid = emailAddress.length === 0 || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress);
     const passwordValid = password.length > 0;
+    
     const formValid = emailAddress.length > 0 && password.length > 0 && emailValid;
 
     const handleSubmit = async () => {
@@ -50,11 +50,7 @@ const SignIn = () => {
                         return;
                     }
 
-                    // posthog.identify(emailAddress, {
-                    //     $set: { email: emailAddress },
-                    //     $set_once: { first_sign_in_date: new Date().toISOString() },
-                    // });
-                    // posthog.capture('user_signed_in', { email: emailAddress });
+                    posthog?.capture('user_signed_in');
 
                     const url = decorateUrl('/(tabs)');
                     if (url.startsWith('http')) {
@@ -98,12 +94,7 @@ const SignIn = () => {
                         return;
                     }
 
-                    // Track successful sign-in after verification
-                    // posthog.identify(emailAddress, {
-                    //     $set: { email: emailAddress },
-                    //     $set_once: { first_sign_in_date: new Date().toISOString() },
-                    // });
-                    // posthog.capture('user_signed_in', { email: emailAddress });
+                    posthog?.capture('user_signed_in');
 
                     const url = decorateUrl('/(tabs)');
                     if (url.startsWith('http')) {

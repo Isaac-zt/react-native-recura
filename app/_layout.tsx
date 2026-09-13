@@ -2,8 +2,14 @@ import { SplashScreen, Stack } from "expo-router";
 import "@/global.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { ClerkProvider, useAuth } from '@clerk/expo'
+import { ClerkProvider, useAuth, useUser } from '@clerk/expo'
 import { tokenCache } from '@clerk/expo/token-cache'
+import {
+  PostHogErrorBoundary,
+  PostHogProvider,
+  usePostHog,
+} from 'posthog-react-native'
+import { posthog } from '@/lib/posthog'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -11,6 +17,26 @@ const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
 
 if(!publishableKey) {
   throw new Error("Add your Clerk Publishable key to the .env file");
+}
+
+function PostHogIdentity() {
+  const { user } = useUser()
+  const posthogClient = usePostHog()
+
+  useEffect(() => {
+    if (!user) return
+
+    posthogClient.identify(user.id, {
+      $set: {
+        ...(user.primaryEmailAddress?.emailAddress && {
+          email: user.primaryEmailAddress.emailAddress,
+        }),
+        ...(user.fullName && { name: user.fullName }),
+      },
+    })
+  }, [posthogClient, user?.id])
+
+  return null
 }
 
  function RootLayoutContent() {
@@ -32,7 +58,16 @@ useEffect(() => {
 
 if(!fontsLoaded || !authLoaded) return null;
 
-return <Stack screenOptions={{ headerShown: false }} />;
+return posthog ? (
+  <PostHogProvider client={posthog}>
+    <PostHogErrorBoundary>
+      <PostHogIdentity />
+      <Stack screenOptions={{ headerShown: false }} />
+    </PostHogErrorBoundary>
+  </PostHogProvider>
+) : (
+  <Stack screenOptions={{ headerShown: false }} />
+);
 }
 
 export default function RootLayout() {
