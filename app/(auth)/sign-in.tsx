@@ -1,10 +1,10 @@
-import { View, Text, TextInput, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
-import { Link, useRouter, type Href } from 'expo-router';
-import { useSignIn } from '@clerk/expo';
-import { useState } from 'react';
-import { SafeAreaView as RNSafeAreaView } from'react-native-safe-area-context';
-import { styled } from 'nativewind';
 import { posthog } from '@/lib/posthog';
+import { useSignIn } from '@clerk/expo';
+import { Link, useRouter, type Href } from 'expo-router';
+import { styled } from 'nativewind';
+import { useState } from 'react';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 
 const SafeAreaView = styled(RNSafeAreaView);
 
@@ -136,7 +136,7 @@ const SignIn = () => {
                                         <Text className="auth-logo-mark-text">R</Text>
                                     </View>
                                     <View>
-                                        <Text className="auth-wordmark">Recurrly</Text>
+                                        <Text className="auth-wordmark">Recura</Text>
                                         <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
                                     </View>
                                 </View>
@@ -220,7 +220,7 @@ const SignIn = () => {
                                     <Text className="auth-logo-mark-text">R</Text>
                                 </View>
                                 <View>
-                                    <Text className="auth-wordmark">Recurrly</Text>
+                                    <Text className="auth-wordmark">Recura</Text>
                                     <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
                                 </View>
                             </View>
