@@ -51,6 +51,34 @@ declare global {
     interface ListHeadingProps {
         title: string;
     }
+
+    interface WeeklySpendDay {
+        key: string;
+        label: string;
+        amount: number;
+    }
+
+    interface MonthlyExpenseSummary {
+        monthLabel: string;
+        total: number;
+        changePercent: number;
+    }
+
+    interface UpcomingBarChartProps {
+        data: WeeklySpendDay[];
+        selectedIndex: number;
+        onSelect: (index: number) => void;
+    }
+
+    interface InsightsHistoryCardProps {
+        name: string;
+        icon: ImageSourcePropType;
+        amount: number;
+        currency?: string;
+        billing: string;
+        date?: string;
+        color?: string;
+    }
 }
 
 export {};
